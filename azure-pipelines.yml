@@ -23,7 +23,7 @@ steps:
 - script: dotnet test
   workingDirectory: chapter-14/start/backend
   displayName: 'backend tests'
-- script: dotnet publish -c $(buildConfiguration) -r win-x86 --self-contained true
+- script: dotnet publish -c $(buildConfiguration) -r win-x86
   workingDirectory: chapter-14/start/backend
   displayName: 'backend publish'
 - task: ArchiveFiles@2
