@@ -31,8 +31,8 @@ export const Answer = ({ data }: Props) => (
       `}
     >
       {`Answered by ${data.userName} on
-      ${data.created.toLocaleDateString()} 
-      ${data.created.toLocaleTimeString()}`}
+      ${data.created.toLocaleDateString([], { timeZone: 'UTC' })} 
+      ${data.created.toLocaleTimeString([], { timeZone: 'UTC' })}`}
     </div>
   </div>
 );

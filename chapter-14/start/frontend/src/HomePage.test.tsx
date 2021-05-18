@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 afterEach(cleanup);
 
 jest.mock('./QuestionsData', () => ({
-  getUnansweredQuestions: jest.fn(() => {
+  getUnansweredQuestions: () => {
     return Promise.resolve([
       {
         questionId: 1,
@@ -25,7 +25,7 @@ jest.mock('./QuestionsData', () => ({
         answers: [],
       },
     ]);
-  }),
+  },
 }));
 
 test('When HomePage first rendered, loading indicator should show', async () => {
@@ -47,4 +47,3 @@ test('When HomePage data returned, it should render questions', async () => {
   expect(await findByText('Title1 test')).toBeInTheDocument();
   expect(await findByText('Title2 test')).toBeInTheDocument();
 });
-
