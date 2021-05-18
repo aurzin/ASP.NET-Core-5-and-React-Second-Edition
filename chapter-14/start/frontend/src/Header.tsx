@@ -19,9 +19,11 @@ const buttonStyle = css`
   color: ${gray2};
   text-decoration: none;
   cursor: pointer;
+
   :focus {
     outline-color: ${gray5};
   }
+
   span {
     margin-left: 7px;
   }
@@ -68,6 +70,15 @@ export const Header = () => {
         `}
       >
         Q & A
+        <span
+          css={css`
+            margin-left: 5px;
+            font-size: 14px;
+            font-weight: normal;
+          `}
+        >
+          {process.env.REACT_APP_ENV || 'dev'}
+        </span>
       </Link>
       <form onSubmit={handleSubmit(submitForm)}>
         <input
@@ -87,6 +98,7 @@ export const Header = () => {
             background-color: white;
             width: 200px;
             height: 30px;
+
             :focus {
               outline-color: ${gray5};
             }

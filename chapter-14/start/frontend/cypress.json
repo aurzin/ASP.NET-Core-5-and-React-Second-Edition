@@ -1,4 +1,7 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "https://frontend-aurzin-staging.azurewebsites.net",
+  "integrationFolder": "integration",
+  "pluginsFile": "plugins/index.js",
+  "supportFile": "support/index.js",
   "chromeWebSecurity": false
 }
