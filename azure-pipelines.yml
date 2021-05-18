@@ -28,7 +28,7 @@ steps:
   displayName: 'backend publish'
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'chapter-14/start/backend/bin/Release/net5.0/winx86/publish'
+    rootFolderOrFile: 'chapter-14/start/backend/bin/Release/net5.0/win-x86/publish'
     includeRootFolder: false
     archiveType: zip
     archiveFile: '$(Build.ArtifactStagingDirectory)/backend/$(Build.BuildId).zip'
