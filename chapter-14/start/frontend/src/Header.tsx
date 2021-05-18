@@ -69,7 +69,7 @@ export const Header = () => {
           text-decoration: none;
         `}
       >
-        Q & A
+        Q & A!
         <span
           css={css`
             margin-left: 5px;
