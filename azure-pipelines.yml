@@ -20,3 +20,68 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'backend build $(buildConfiguration)'
   workingDirectory: chapter-14/start/backend
+- script: dotnet test
+  workingDirectory: chapter-14/start/backend
+  displayName: 'backend tests'
+- script: dotnet publish -c $(buildConfiguration) --selfcontained true -r win-x86
+  workingDirectory: chapter-14/start/backend
+  displayName: 'backend publish'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'chapter-14/start/backend/bin/Release/net5.0/winx86/publish'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/backend/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+  displayName: 'backend zip files'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/backend'
+    artifactName: 'backend'
+  displayName: 'backend publish to pipeline'
+- script: npm install
+  workingDirectory: chapter-14/start/frontend
+  displayName: 'frontend install dependencies'
+- script: npm run test:ci
+  workingDirectory: chapter-14/start/frontend
+  displayName: 'frontend tests'
+- script: npm run build:staging
+  workingDirectory: chapter-14/start/frontend
+  displayName: 'frontend staging build'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'chapter-14/start/frontend/build'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/build.zip'
+    replaceExistingArchive: true
+  displayName: 'frontend staging zip files'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'chapter-14/start/frontend/cypress'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/tests.zip'
+    replaceExistingArchive: true
+  displayName: 'frontend cypress zip files'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/frontend-staging'
+    artifactName: 'frontend-staging'
+  displayName: 'frontend staging publish to pipeline'
+- script: npm run build:production
+  workingDirectory: chapter-14/start/frontend
+  displayName: 'frontend production build'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'chapter-14/start/frontend/build'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-production/build.zip'
+    replaceExistingArchive: true
+  displayName: 'frontend production zip files'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/frontend-production'
+    artifactName: 'frontend-production'
+  displayName: 'frontend production publish to pipeline'
