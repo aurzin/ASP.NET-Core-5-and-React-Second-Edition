@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://qanda-aurzin-backend-staging.azurewebsites.net",
+  "baseUrl": "https://frontend-aurzin.azurewebsites.net",
   "integrationFolder": "integration",
   "pluginsFile": "plugins/index.js",
   "supportFile": "support/index.js",

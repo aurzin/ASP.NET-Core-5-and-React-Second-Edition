@@ -1,7 +1,7 @@
 {
-  "baseUrl": "https://frontend-aurzin-staging.azurewebsites.net",
-  "integrationFolder": "integration",
-  "pluginsFile": "plugins/index.js",
-  "supportFile": "support/index.js",
+  "baseUrl": "https://frontend-aurzin.azurewebsites.net",
+  "integrationFolder": "cypress/integration",
+  "pluginsFile": "cypress/plugins/index.js",
+  "supportFile": "cypress/support/index.js",
   "chromeWebSecurity": false
 }
